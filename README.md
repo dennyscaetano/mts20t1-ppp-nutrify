@@ -21,3 +21,9 @@ Acesse `/api-docs` após iniciar o servidor.
 
 ## Requisitos
 Consulte o documento `REQUISITOS.md` para a especificação completa dos requisitos funcionais e não-funcionais do projeto.
+
+## Políticas de API
+
+- Strict validation: as rotas de criação e atualização (`POST`/`PUT` em `/users`, `/foods`, `/meals`) rejeitam campos extras no corpo da requisição com resposta `400` e mensagem explicando os campos não permitidos. Use apenas os campos documentados no Swagger.
+- Timestamps: as entidades retornadas incluem `createdAt` e `updatedAt` (ISO 8601), gerados automaticamente pelo repositório em memória.
+

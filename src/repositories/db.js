@@ -16,7 +16,8 @@ function generateId() {
 const UserRepo = {
   create: async (data) => {
     const id = generateId();
-    const user = { id, _id: id, role: data.role || 'user', ...data };
+  const now = new Date().toISOString();
+  const user = { ...data, role: data.role || 'user', id, createdAt: now, updatedAt: now };
     db.users.set(id, user);
     return user;
   },
@@ -31,7 +32,8 @@ const UserRepo = {
   update: async (id, data) => {
     const existing = db.users.get(id);
     if (!existing) return null;
-  const updated = { ...existing, ...data, id, _id: id };
+  const now = new Date().toISOString();
+  const updated = { ...existing, ...data, id, updatedAt: now };
     db.users.set(id, updated);
     return updated;
   }
@@ -41,7 +43,8 @@ const UserRepo = {
 const FoodRepo = {
   create: async (data) => {
     const id = generateId();
-  const food = { id, _id: id, ...data };
+  const now = new Date().toISOString();
+  const food = { ...data, id, createdAt: now, updatedAt: now };
     db.foods.set(id, food);
     return food;
   },
@@ -50,7 +53,8 @@ const FoodRepo = {
   update: async (id, data) => {
     const existing = db.foods.get(id);
     if (!existing) return null;
-  const updated = { ...existing, ...data, id, _id: id };
+  const now = new Date().toISOString();
+  const updated = { ...existing, ...data, id, updatedAt: now };
     db.foods.set(id, updated);
     return updated;
   },
@@ -61,7 +65,8 @@ const FoodRepo = {
 const MealRepo = {
   create: async (data) => {
     const id = generateId();
-  const meal = { id, _id: id, ...data };
+  const now = new Date().toISOString();
+  const meal = { ...data, id, createdAt: now, updatedAt: now };
     db.meals.set(id, meal);
     return meal;
   },
@@ -70,7 +75,8 @@ const MealRepo = {
   update: async (id, data) => {
     const existing = db.meals.get(id);
     if (!existing) return null;
-  const updated = { ...existing, ...data, id, _id: id };
+  const now = new Date().toISOString();
+  const updated = { ...existing, ...data, id, updatedAt: now };
     db.meals.set(id, updated);
     return updated;
   },

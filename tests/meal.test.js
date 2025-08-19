@@ -18,7 +18,7 @@ describe('Meal Endpoints', () => {
       .post('/foods')
       .set('Authorization', `Bearer ${token}`)
       .send({ name: 'Arroz', category: 'Cereal', calories: 130 });
-    foodId = foodRes.body._id;
+  foodId = foodRes.body.id;
   });
 
   it('should create a meal', async () => {
@@ -27,6 +27,8 @@ describe('Meal Endpoints', () => {
       .set('Authorization', `Bearer ${token}`)
       .send({ date: new Date(), foods: [foodId] });
     expect(res.statusCode).toEqual(201);
-    expect(res.body).toHaveProperty('_id');
+  expect(res.body).toHaveProperty('id');
+  expect(res.body).toHaveProperty('totalCalories');
+  expect(res.body.totalCalories).toBeGreaterThan(0);
   });
 });

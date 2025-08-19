@@ -69,7 +69,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Food'
+              $ref: '#/components/schemas/FoodCreate'
       responses:
         '201':
           description: Alimento criado
@@ -269,9 +269,25 @@ components:
           type: string
         calorieGoal:
           type: number
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+      example:
+        id: "user-1"
+        name: "João da Silva"
+        email: "joao@example.com"
+        role: "user"
+        calorieGoal: 2000
+        createdAt: "2025-08-19T12:00:00.000Z"
+        updatedAt: "2025-08-19T12:00:00.000Z"
     Food:
       type: object
       properties:
+        id:
+          type: string
         name:
           type: string
         category:
@@ -284,6 +300,22 @@ components:
           type: number
         fat:
           type: number
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+      example:
+        id: "food-1"
+        name: "Banana"
+        category: "Fruta"
+        calories: 89
+        protein: 1.1
+        carbs: 23
+        fat: 0.3
+        createdAt: "2025-08-19T12:00:00.000Z"
+        updatedAt: "2025-08-19T12:00:00.000Z"
     Meal:
       type: object
       properties:
@@ -302,6 +334,46 @@ components:
           type: number
         totalFat:
           type: number
+        id:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+      example:
+        id: "meal-1"
+        date: "2025-08-19T18:30:00.000Z"
+        foods: ["food-1"]
+        totalCalories: 89
+        totalProtein: 1.1
+        totalCarbs: 23
+        totalFat: 0.3
+        createdAt: "2025-08-19T18:30:00.000Z"
+        updatedAt: "2025-08-19T18:30:00.000Z"
+    FoodCreate:
+      type: object
+      properties:
+        name:
+          type: string
+        category:
+          type: string
+        calories:
+          type: number
+        protein:
+          type: number
+        carbs:
+          type: number
+        fat:
+          type: number
+      example:
+        name: "Banana"
+        category: "Fruta"
+        calories: 89
+        protein: 1.1
+        carbs: 23
+        fat: 0.3
   responses:
     BadRequest:
       description: Requisição inválida

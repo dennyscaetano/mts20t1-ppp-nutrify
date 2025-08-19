@@ -10,3 +10,8 @@ exports.login = [
   body('email').isEmail(),
   body('password').notEmpty()
 ];
+
+exports.allowedFields = {
+  register: ['name', 'email', 'password'],
+  login: ['email', 'password']
+};
