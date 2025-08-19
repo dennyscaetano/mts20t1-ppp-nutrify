@@ -1,5 +1,8 @@
 require('dotenv').config();
+require('express-async-errors');
 const express = require('express');
+const helmet = require('helmet');
+const morgan = require('morgan');
 const swaggerUi = require('swagger-ui-express');
 const YAML = require('yamljs');
 const userRoutes = require('./routes/userRoutes');
@@ -8,6 +11,8 @@ const mealRoutes = require('./routes/mealRoutes');
 
 const app = express();
 app.use(express.json());
+app.use(helmet());
+app.use(morgan('dev'));
 
 // Defaults for environment variables for ease of testing / execução em memória
 process.env.JWT_SECRET = process.env.JWT_SECRET || 'dev_secret_change_me';
@@ -22,6 +27,8 @@ app.use('/foods', foodRoutes);
 app.use('/meals', mealRoutes);
 
 // Error handler
+// next is required by Express to recognize this as an error-handling middleware
+// eslint-disable-next-line no-unused-vars
 app.use((err, req, res, next) => {
   res.status(err.status || 500).json({ error: err.message });
 });

@@ -18,3 +18,6 @@ API REST para gerenciamento de alimentação, dieta e controle de calorias.
 
 ## Documentação
 Acesse `/api-docs` após iniciar o servidor.
+
+## Requisitos
+Consulte o documento `REQUISITOS.md` para a especificação completa dos requisitos funcionais e não-funcionais do projeto.
