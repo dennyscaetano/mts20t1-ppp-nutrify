@@ -30,7 +30,18 @@ app.use('/meals', mealRoutes);
 // next is required by Express to recognize this as an error-handling middleware
 // eslint-disable-next-line no-unused-vars
 app.use((err, req, res, next) => {
-  res.status(err.status || 500).json({ error: err.message });
+  // eslint-disable-line no-unused-vars
+  const HttpError = require('./errors/HttpError');
+  if (err instanceof HttpError) {
+    return res.status(err.status).json({ error: err.message });
+  }
+  // unexpected errors
+  // log full error in non-production
+  if (process.env.NODE_ENV !== 'production') {
+    console.error(err);
+    return res.status(500).json({ error: err.message || 'Internal Server Error', stack: err.stack });
+  }
+  return res.status(500).json({ error: 'Internal Server Error' });
 });
 
 // Start server only when executed directly. Tests can import the app without starting the server.

@@ -14,17 +14,16 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              properties:
-                name:
-                  type: string
-                email:
-                  type: string
-                password:
-                  type: string
+              $ref: '#/components/schemas/UserCreate'
       responses:
         '201':
           description: Usuário registrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          $ref: '#/components/responses/BadRequest'
   /users/login:
     post:
       summary: Login de usuário
@@ -33,15 +32,19 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              properties:
-                email:
-                  type: string
-                password:
-                  type: string
+              $ref: '#/components/schemas/UserLogin'
       responses:
         '200':
           description: Token JWT
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+        '401':
+          $ref: '#/components/responses/Unauthorized'
   /users/profile:
     get:
       summary: Perfil do usuário
@@ -50,6 +53,12 @@ paths:
       responses:
         '200':
           description: Dados do usuário
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
   /foods:
     post:
       summary: Cadastrar alimento
@@ -64,6 +73,12 @@ paths:
       responses:
         '201':
           description: Alimento criado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Food'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
     get:
       summary: Listar alimentos
       security:
@@ -71,11 +86,22 @@ paths:
       responses:
         '200':
           description: Lista de alimentos
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Food'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
   /foods/{id}:
     put:
       summary: Atualizar alimento
       security:
         - bearerAuth: []
+        - bearerAuth: []
+      # Apenas admins podem atualizar/remover alimentos
+      x-roles: [admin]
       parameters:
         - name: id
           in: path
@@ -91,10 +117,17 @@ paths:
       responses:
         '200':
           description: Alimento atualizado
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
     delete:
       summary: Remover alimento
       security:
         - bearerAuth: []
+      x-roles: [admin]
       parameters:
         - name: id
           in: path
@@ -104,6 +137,12 @@ paths:
       responses:
         '204':
           description: Alimento removido
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
   /meals:
     post:
       summary: Registrar refeição
@@ -118,6 +157,14 @@ paths:
       responses:
         '201':
           description: Refeição registrada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Meal'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
     get:
       summary: Listar refeições do usuário
       security:
@@ -125,6 +172,14 @@ paths:
       responses:
         '200':
           description: Lista de refeições
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Meal'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
   /meals/{id}:
     put:
       summary: Atualizar refeição
@@ -145,6 +200,12 @@ paths:
       responses:
         '200':
           description: Refeição atualizada
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
     delete:
       summary: Remover refeição
       security:
@@ -158,6 +219,12 @@ paths:
       responses:
         '204':
           description: Refeição removida
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
 components:
   securitySchemes:
     bearerAuth:
@@ -165,6 +232,43 @@ components:
       scheme: bearer
       bearerFormat: JWT
   schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        stack:
+          type: string
+          nullable: true
+    UserCreate:
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+    UserLogin:
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        email:
+          type: string
+        role:
+          type: string
+        calorieGoal:
+          type: number
     Food:
       type: object
       properties:
@@ -198,3 +302,28 @@ components:
           type: number
         totalFat:
           type: number
+  responses:
+    BadRequest:
+      description: Requisição inválida
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Não autenticado
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Forbidden:
+      description: Acesso negado
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Recurso não encontrado
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'

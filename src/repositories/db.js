@@ -16,10 +16,11 @@ function generateId() {
 const UserRepo = {
   create: async (data) => {
     const id = generateId();
-  const user = { id, _id: id, ...data };
+    const user = { id, _id: id, role: data.role || 'user', ...data };
     db.users.set(id, user);
     return user;
   },
+  count: async () => db.users.size,
   findByEmail: async (email) => {
     for (const user of db.users.values()) {
       if (user.email === email) return user;

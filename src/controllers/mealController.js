@@ -20,7 +20,7 @@ exports.getMeals = async (req, res, next) => {
 
 exports.updateMeal = async (req, res, next) => {
   try {
-    const meal = await MealService.updateMeal(req.params.id, req.body);
+    const meal = await MealService.updateMeal(req.userId, req.params.id, req.body);
     res.json(meal);
   } catch (err) {
     next(err);
@@ -29,7 +29,7 @@ exports.updateMeal = async (req, res, next) => {
 
 exports.deleteMeal = async (req, res, next) => {
   try {
-    await MealService.deleteMeal(req.params.id);
+    await MealService.deleteMeal(req.userId, req.params.id);
     res.status(204).end();
   } catch (err) {
     next(err);
