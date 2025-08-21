@@ -2,21 +2,11 @@
   {
     "name": "User",
     "email": "u@example.com",
-    "password": "$2a$10$.GKScJZSi8sZTTUpEcBsp.JUDY6N5uqVsyuJ7TIFXsqgJ5ExNC1oy",
+    "password": "$2a$10$Mm9EYHsGLy6qf3nFPFw89O1j2IaQil1dcjMwIGAnu9EQY69F/ndHm",
     "calorieGoal": 2000,
     "role": "admin",
-    "id": "67cf424d-5b85-4084-bc46-0e36cb2c4c3f",
-    "createdAt": "2025-08-21T14:07:30.038Z",
-    "updatedAt": "2025-08-21T14:07:30.038Z"
-  },
-  {
-    "name": "admin",
-    "email": "admin@email.com",
-    "password": "$2a$10$79SpiZMOuBWi2QUCVW0GbOKthRlbUwfrwmlvEvqvCAYjDsqYuudp2",
-    "calorieGoal": 2000,
-    "role": "user",
-    "id": "c610620d-2045-4279-ad20-739df6a526c9",
-    "createdAt": "2025-08-21T14:13:08.520Z",
-    "updatedAt": "2025-08-21T14:13:08.520Z"
+    "id": "28b701ae-0542-4845-b97e-41c9023e8cdb",
+    "createdAt": "2025-08-21T14:56:19.916Z",
+    "updatedAt": "2025-08-21T14:56:19.916Z"
   }
 ]

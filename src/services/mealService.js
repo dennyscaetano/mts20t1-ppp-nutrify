@@ -2,20 +2,25 @@ const { MealRepo, FoodRepo } = require('../repositories/db');
 const HttpError = require('../errors/HttpError');
 
 exports.createMeal = async (userId, data) => {
-  const foods = await Promise.all(data.foods.map(id => FoodRepo.findById(id)));
+  // data must contain only foods: array of food ids
+  const foods = await Promise.all((data.foods || []).map(id => FoodRepo.findById(id)));
+  if (!Array.isArray(data.foods) || data.foods.length === 0) throw new HttpError(400, 'Foods deve ser um array não vazio');
   if (foods.some(f => !f)) throw new HttpError(400, 'Um ou mais alimentos não foram encontrados');
   const totalCalories = foods.reduce((sum, f) => sum + (f?.calories || 0), 0);
   const totalProtein = foods.reduce((sum, f) => sum + (f?.protein || 0), 0);
   const totalCarbs = foods.reduce((sum, f) => sum + (f?.carbs || 0), 0);
   const totalFat = foods.reduce((sum, f) => sum + (f?.fat || 0), 0);
+  const now = new Date().toISOString();
   const meal = await MealRepo.create({
     user: userId,
-    date: data.date,
+    date: now,
     foods: data.foods,
     totalCalories,
     totalProtein,
     totalCarbs,
-    totalFat
+    totalFat,
+    createdAt: now,
+    updatedAt: now
   });
   return meal;
 };
@@ -37,7 +42,19 @@ exports.updateMeal = async (userId, id, data) => {
   const existing = await MealRepo.findById(id);
   if (!existing) throw new HttpError(404, 'Refeição não encontrada');
   if (existing.user !== userId) throw new HttpError(403, 'Acesso negado');
-  const updated = await MealRepo.update(id, data);
+  // If foods are provided, validate and recompute totals
+  let toUpdate = { ...data };
+  if (data.foods) {
+    if (!Array.isArray(data.foods) || data.foods.length === 0) throw new HttpError(400, 'Foods deve ser um array não vazio');
+    const foods = await Promise.all(data.foods.map(fid => FoodRepo.findById(fid)));
+    if (foods.some(f => !f)) throw new HttpError(400, 'Um ou mais alimentos não foram encontrados');
+    toUpdate.totalCalories = foods.reduce((sum, f) => sum + (f?.calories || 0), 0);
+    toUpdate.totalProtein = foods.reduce((sum, f) => sum + (f?.protein || 0), 0);
+    toUpdate.totalCarbs = foods.reduce((sum, f) => sum + (f?.carbs || 0), 0);
+    toUpdate.totalFat = foods.reduce((sum, f) => sum + (f?.fat || 0), 0);
+  }
+  toUpdate.updatedAt = new Date().toISOString();
+  const updated = await MealRepo.update(id, toUpdate);
   return updated;
 };
 

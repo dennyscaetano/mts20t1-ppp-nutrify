@@ -39,7 +39,7 @@ describe('Validação strict em atualização (funcional)', function () {
     const mealRes = await request(app)
       .post('/meals')
       .set('Authorization', `Bearer ${token}`)
-      .send({ date: new Date().toISOString(), foods: [foodId] });
+      .send({ foods: [foodId] });
     const mealId = mealRes.body.id;
 
     const res = await request(app)

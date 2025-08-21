@@ -3,7 +3,7 @@ const MealService = require('../services/mealService');
 exports.createMeal = async (req, res, next) => {
   try {
   const meal = await MealService.createMeal(req.userId, req.body);
-  // sanitize: return id and totals
+  // sanitize: return id, date (server-generated), foods (ids) and computed totals/timestamps
   const { id, user, date, foods, totalCalories, totalProtein, totalCarbs, totalFat, createdAt, updatedAt } = meal;
   res.status(201).json({ id, user, date, foods, totalCalories, totalProtein, totalCarbs, totalFat, createdAt, updatedAt });
   } catch (err) {
@@ -25,7 +25,8 @@ exports.getMeals = async (req, res, next) => {
 exports.updateMeal = async (req, res, next) => {
   try {
     const meal = await MealService.updateMeal(req.userId, req.params.id, req.body);
-    res.json(meal);
+  // ensure foods are ids and totals/timestamps are present
+  res.json(meal);
   } catch (err) {
     next(err);
   }

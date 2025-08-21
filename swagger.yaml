@@ -153,7 +153,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Meal'
+              $ref: '#/components/schemas/MealCreate'
       responses:
         '201':
           description: Refeição registrada
@@ -196,7 +196,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Meal'
+              $ref: '#/components/schemas/MealUpdate'
       responses:
         '200':
           description: Refeição atualizada
@@ -352,6 +352,27 @@ components:
         totalFat: 0.3
         createdAt: "2025-08-19T18:30:00.000Z"
         updatedAt: "2025-08-19T18:30:00.000Z"
+    MealCreate:
+      type: object
+      description: Payload para criação de refeição. Somente lista de IDs de alimentos é aceita; date e timestamps são gerados pelo servidor.
+      properties:
+        foods:
+          type: array
+          items:
+            type: string
+      required: [foods]
+      example:
+        foods: ["food-1", "food-2"]
+    MealUpdate:
+      type: object
+      description: Payload para atualização de refeição. Apenas o campo foods (array de ids) pode ser alterado; totals e updatedAt são recalculados pelo servidor.
+      properties:
+        foods:
+          type: array
+          items:
+            type: string
+      example:
+        foods: ["food-1"]
     FoodCreate:
       type: object
       properties:

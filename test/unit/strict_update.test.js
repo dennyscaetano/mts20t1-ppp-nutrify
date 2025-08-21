@@ -35,10 +35,10 @@ describe('Validação estrita em atualizações (PUT) rejeita campos extras', ()
       .send({ name: 'Pear', calories: 57 });
     const foodId = foodRes.body.id;
 
-    const mealRes = await request(app)
-      .post('/meals')
-      .set('Authorization', `Bearer ${token}`)
-      .send({ date: new Date().toISOString(), foods: [foodId] });
+      const mealRes = await request(app)
+        .post('/meals')
+        .set('Authorization', `Bearer ${token}`)
+        .send({ foods: [foodId] });
     const mealId = mealRes.body.id;
 
     const res = await request(app)

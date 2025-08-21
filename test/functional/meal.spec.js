@@ -20,7 +20,7 @@ describe('Endpoints de Refeição (funcional)', function () {
     const res = await request(app)
       .post('/meals')
       .set('Authorization', `Bearer ${token}`)
-      .send({ date: new Date().toISOString(), foods: [foodId] });
+      .send({ foods: [foodId] });
 
     expect(res.status).to.equal(201);
     expect(res.body).to.have.property('totalCalories');

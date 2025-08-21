@@ -81,7 +81,7 @@ describe('Testes funcionais negativos / validação', function () {
       const login = await request(app).post('/users/login').send({ email: 'm2@example.com', password: '123456' });
       const token = login.body.token;
 
-      const res = await request(app).post('/meals').set('Authorization', `Bearer ${token}`).send({ date: new Date().toISOString() });
+  const res = await request(app).post('/meals').set('Authorization', `Bearer ${token}`).send({ });
       expect(res.status).to.equal(400);
       expect(res.body).to.have.property('errors');
     });
@@ -91,7 +91,7 @@ describe('Testes funcionais negativos / validação', function () {
       const login = await request(app).post('/users/login').send({ email: 'm3@example.com', password: '123456' });
       const token = login.body.token;
 
-      const res = await request(app).post('/meals').set('Authorization', `Bearer ${token}`).send({ date: new Date().toISOString(), foods: 'not-an-array' });
+  const res = await request(app).post('/meals').set('Authorization', `Bearer ${token}`).send({ foods: 'not-an-array' });
       expect(res.status).to.equal(400);
       expect(res.body).to.have.property('errors');
     });
@@ -101,7 +101,7 @@ describe('Testes funcionais negativos / validação', function () {
       const login = await request(app).post('/users/login').send({ email: 'm4@example.com', password: '123456' });
       const token = login.body.token;
 
-      const res = await request(app).post('/meals').set('Authorization', `Bearer ${token}`).send({ date: new Date().toISOString(), foods: ['non-existing-id'] });
+  const res = await request(app).post('/meals').set('Authorization', `Bearer ${token}`).send({ foods: ['non-existing-id'] });
       expect(res.status).to.equal(400);
       expect(res.body).to.have.property('error');
     });

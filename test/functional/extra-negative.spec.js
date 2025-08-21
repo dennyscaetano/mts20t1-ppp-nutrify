@@ -23,7 +23,7 @@ describe('Casos funcionais negativos extras (pt-BR)', function () {
     await request(app).post('/users/register').send({ name: 'B', email: 'b@b.com', password: '123456' });
     const login = await request(app).post('/users/login').send({ email: 'b@b.com', password: '123456' });
     const token = login.body.token;
-    const res = await request(app).post('/meals').set('Authorization', `Bearer ${token}`).send({ date: new Date().toISOString(), foods: [] });
+  const res = await request(app).post('/meals').set('Authorization', `Bearer ${token}`).send({ foods: [] });
     expect(res.status).to.equal(400);
   });
 

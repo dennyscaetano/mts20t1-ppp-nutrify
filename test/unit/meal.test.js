@@ -25,7 +25,7 @@ describe('Endpoints de Refeição (unitários)', () => {
     const res = await request(app)
       .post('/meals')
       .set('Authorization', `Bearer ${token}`)
-      .send({ date: new Date(), foods: [foodId] });
+      .send({ foods: [foodId] });
     expect(res.statusCode).toEqual(201);
     expect(res.body).toHaveProperty('id');
     expect(res.body).toHaveProperty('totalCalories');
