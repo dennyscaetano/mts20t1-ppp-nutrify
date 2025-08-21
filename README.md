@@ -27,3 +27,6 @@ Consulte o documento `REQUISITOS.md` para a especificação completa dos requisi
 - Strict validation: as rotas de criação e atualização (`POST`/`PUT` em `/users`, `/foods`, `/meals`) rejeitam campos extras no corpo da requisição com resposta `400` e mensagem explicando os campos não permitidos. Use apenas os campos documentados no Swagger.
 - Timestamps: as entidades retornadas incluem `createdAt` e `updatedAt` (ISO 8601), gerados automaticamente pelo repositório em memória.
 
+## Idioma dos testes
+Todos os testes funcionais e unitários foram traduzidos para Português (pt-BR). Os relatórios gerados pelos frameworks de teste (mochawesome, jest-junit) conterão títulos e descrições em pt-BR quando executados localmente nesta base.
+

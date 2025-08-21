@@ -39,9 +39,9 @@ app.use((err, req, res, next) => {
   // log full error in non-production
   if (process.env.NODE_ENV !== 'production') {
     console.error(err);
-    return res.status(500).json({ error: err.message || 'Internal Server Error', stack: err.stack });
+    return res.status(500).json({ error: err.message || 'Erro Interno do Servidor', stack: err.stack });
   }
-  return res.status(500).json({ error: 'Internal Server Error' });
+  return res.status(500).json({ error: 'Erro Interno do Servidor' });
 });
 
 // Start server only when executed directly. Tests can import the app without starting the server.

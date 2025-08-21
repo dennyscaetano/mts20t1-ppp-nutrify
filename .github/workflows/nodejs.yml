@@ -17,4 +17,26 @@ jobs:
           node-version: '20.x'
       - run: npm install
       - run: npm run lint
-      - run: npm run test
+      - run: npm install
+      - run: npm run test:unit
+      - name: Upload Jest JUnit XML
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: junit-jest
+          path: junit.xml
+      - run: npm run test:functional
+      - name: Upload Mochawesome
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mochawesome
+          path: reports/mocha
+      - name: Generate coverage (nyc)
+        run: npm run coverage || true
+      - name: Upload coverage
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage
+          path: coverage

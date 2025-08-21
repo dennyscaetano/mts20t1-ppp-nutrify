@@ -11,6 +11,13 @@
   },
   "rules": {
     "no-unused-vars": "warn",
-    "no-console": "off"
+    "no-console": "off",
+    "no-prototype-builtins": "warn",
+    "no-unsafe-finally": "warn",
+    "no-empty": ["warn", { "allowEmptyCatch": true }],
+    "no-useless-escape": "warn",
+    "valid-typeof": "warn",
+    "no-func-assign": "warn",
+    "no-cond-assign": ["warn", "except-parens"]
   }
 }
