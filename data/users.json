@@ -1,0 +1,12 @@
+[
+  {
+    "name": "User",
+    "email": "u@example.com",
+    "password": "$2a$10$.GKScJZSi8sZTTUpEcBsp.JUDY6N5uqVsyuJ7TIFXsqgJ5ExNC1oy",
+    "calorieGoal": 2000,
+    "role": "admin",
+    "id": "67cf424d-5b85-4084-bc46-0e36cb2c4c3f",
+    "createdAt": "2025-08-21T14:07:30.038Z",
+    "updatedAt": "2025-08-21T14:07:30.038Z"
+  }
+]
