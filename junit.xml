@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="jest tests" tests="9" failures="0" errors="0" time="4.545">
-  <testsuite name="Endpoints de Usuário (unitários)" errors="0" failures="0" skipped="0" timestamp="2025-08-21T13:26:27" time="1.804" tests="2">
-    <testcase classname="Endpoints de Usuário (unitários) deve registrar um usuário" name="Endpoints de Usuário (unitários) deve registrar um usuário" time="0.145">
+<testsuites name="jest tests" tests="9" failures="0" errors="0" time="4.844">
+  <testsuite name="Endpoints de Usuário (unitários)" errors="0" failures="0" skipped="0" timestamp="2025-08-21T14:11:15" time="1.952" tests="2">
+    <testcase classname="Endpoints de Usuário (unitários) deve registrar um usuário" name="Endpoints de Usuário (unitários) deve registrar um usuário" time="0.165">
     </testcase>
-    <testcase classname="Endpoints de Usuário (unitários) deve autenticar um usuário" name="Endpoints de Usuário (unitários) deve autenticar um usuário" time="0.169">
-    </testcase>
-  </testsuite>
-  <testsuite name="Validação estrita em atualizações (PUT) rejeita campos extras" errors="0" failures="0" skipped="0" timestamp="2025-08-21T13:26:29" time="0.884" tests="2">
-    <testcase classname="Validação estrita em atualizações (PUT) rejeita campos extras PUT /foods/:id rejeita campos extras" name="Validação estrita em atualizações (PUT) rejeita campos extras PUT /foods/:id rejeita campos extras" time="0.197">
-    </testcase>
-    <testcase classname="Validação estrita em atualizações (PUT) rejeita campos extras PUT /meals/:id rejeita campos extras" name="Validação estrita em atualizações (PUT) rejeita campos extras PUT /meals/:id rejeita campos extras" time="0.187">
+    <testcase classname="Endpoints de Usuário (unitários) deve autenticar um usuário" name="Endpoints de Usuário (unitários) deve autenticar um usuário" time="0.187">
     </testcase>
   </testsuite>
-  <testsuite name="Validação estrita rejeita campos extras" errors="0" failures="0" skipped="0" timestamp="2025-08-21T13:26:30" time="0.684" tests="3">
-    <testcase classname="Validação estrita rejeita campos extras POST /users/register rejeita campos extras" name="Validação estrita rejeita campos extras POST /users/register rejeita campos extras" time="0.019">
+  <testsuite name="Validação estrita em atualizações (PUT) rejeita campos extras" errors="0" failures="0" skipped="0" timestamp="2025-08-21T14:11:17" time="0.699" tests="2">
+    <testcase classname="Validação estrita em atualizações (PUT) rejeita campos extras PUT /foods/:id rejeita campos extras" name="Validação estrita em atualizações (PUT) rejeita campos extras PUT /foods/:id rejeita campos extras" time="0.193">
     </testcase>
-    <testcase classname="Validação estrita rejeita campos extras POST /foods rejeita campos extras" name="Validação estrita rejeita campos extras POST /foods rejeita campos extras" time="0.2">
-    </testcase>
-    <testcase classname="Validação estrita rejeita campos extras POST /meals rejeita campos extras" name="Validação estrita rejeita campos extras POST /meals rejeita campos extras" time="0.182">
+    <testcase classname="Validação estrita em atualizações (PUT) rejeita campos extras PUT /meals/:id rejeita campos extras" name="Validação estrita em atualizações (PUT) rejeita campos extras PUT /meals/:id rejeita campos extras" time="0.196">
     </testcase>
   </testsuite>
-  <testsuite name="Endpoints de Refeição (unitários)" errors="0" failures="0" skipped="0" timestamp="2025-08-21T13:26:30" time="0.587" tests="1">
-    <testcase classname="Endpoints de Refeição (unitários) deve criar uma refeição" name="Endpoints de Refeição (unitários) deve criar uma refeição" time="0.006">
+  <testsuite name="Validação estrita rejeita campos extras" errors="0" failures="0" skipped="0" timestamp="2025-08-21T14:11:18" time="0.781" tests="3">
+    <testcase classname="Validação estrita rejeita campos extras POST /users/register rejeita campos extras" name="Validação estrita rejeita campos extras POST /users/register rejeita campos extras" time="0.029">
+    </testcase>
+    <testcase classname="Validação estrita rejeita campos extras POST /foods rejeita campos extras" name="Validação estrita rejeita campos extras POST /foods rejeita campos extras" time="0.213">
+    </testcase>
+    <testcase classname="Validação estrita rejeita campos extras POST /meals rejeita campos extras" name="Validação estrita rejeita campos extras POST /meals rejeita campos extras" time="0.179">
     </testcase>
   </testsuite>
-  <testsuite name="Endpoints de Alimentos (unitários)" errors="0" failures="0" skipped="0" timestamp="2025-08-21T13:26:31" time="0.466" tests="1">
-    <testcase classname="Endpoints de Alimentos (unitários) deve criar um alimento" name="Endpoints de Alimentos (unitários) deve criar um alimento" time="0.006">
+  <testsuite name="Endpoints de Alimentos (unitários)" errors="0" failures="0" skipped="0" timestamp="2025-08-21T14:11:18" time="0.509" tests="1">
+    <testcase classname="Endpoints de Alimentos (unitários) deve criar um alimento" name="Endpoints de Alimentos (unitários) deve criar um alimento" time="0.005">
+    </testcase>
+  </testsuite>
+  <testsuite name="Endpoints de Refeição (unitários)" errors="0" failures="0" skipped="0" timestamp="2025-08-21T14:11:19" time="0.732" tests="1">
+    <testcase classname="Endpoints de Refeição (unitários) deve criar uma refeição" name="Endpoints de Refeição (unitários) deve criar uma refeição" time="0.007">
     </testcase>
   </testsuite>
 </testsuites>
